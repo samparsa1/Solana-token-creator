@@ -67,8 +67,6 @@ export const TokenMetadata = ({ setOpenTokenMetaData }) => {
     [tokenAddress]
   );
 
-  console.log('Token Metadata', tokenMetadata);
-
   const CloseModal = () => {
     return (
       <a
