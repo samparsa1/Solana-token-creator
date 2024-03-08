@@ -1,4 +1,10 @@
-import React, { useState, FC, useCallback } from 'react';
+import React, {
+  useState,
+  FC,
+  useCallback,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import {
   Keypair,
@@ -33,7 +39,11 @@ import Branding from 'components/Branding';
 import { InputView } from '../index';
 import Image from 'next/image';
 
-export const CreateView: FC = ({ setOpenCreateModal }) => {
+interface CreateViewProps {
+  setOpenCreateModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export const CreateView: FC<CreateViewProps> = ({ setOpenCreateModal }) => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
   const { networkConfiguration } = useNetworkConfiguration();
@@ -64,8 +74,6 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
         publicKey
       );
 
-      console.log('token', token);
-
       try {
         const metadataUrl = await uploadMetadata(token);
         console.log(metadataUrl);
@@ -91,7 +99,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
                 data: {
                   name: token.name,
                   symbol: token.symbol,
-                  uri: metadataUrl,
+                  uri: metadataUrl || '', // Ensuring uri is always a string
                   creators: null,
                   sellerFeeBasisPoints: 0,
                   uses: null,
@@ -203,6 +211,8 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
         type: 'error',
         message: 'Data is Missing',
       });
+      setIsloading(false);
+      return '';
     }
 
     const data = JSON.stringify({
@@ -231,6 +241,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
       notify({ type: 'error', message: 'Upload to Pinnata Json failed' });
     }
     setIsloading(false);
+    return '';
   };
 
   return (
@@ -273,7 +284,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
                     )}
                   </div>
                   <textarea
-                    rows='6'
+                    rows={6}
                     onChange={(e) => handleFormFieldChange('description', e)}
                     className='border-default-200 relative mt-48 block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 
                     focus:ring-transparent'

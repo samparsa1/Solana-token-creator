@@ -1,6 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEventHandler } from 'react';
 
-export const InputView: FC = ({ name, placeholder, clickhandle }) => {
+interface InputViewProps {
+  name: string;
+  placeholder: string;
+  clickhandle?: ChangeEventHandler<HTMLInputElement>;
+}
+
+export const InputView: FC<InputViewProps> = ({
+  name,
+  placeholder,
+  clickhandle,
+}) => {
   return (
     <div className='mb-4'>
       <label

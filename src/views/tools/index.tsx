@@ -1,9 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import { MdGeneratingTokens } from 'react-icons/md';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 import { LuArrowRightFromLine } from 'react-icons/lu';
 
-export const ToolView: FC = ({
+interface ToolViewProps {
+  setOpenAirdrop: Dispatch<SetStateAction<boolean>>;
+  setOpenContact: Dispatch<SetStateAction<boolean>>;
+  setOpenCreateModal: Dispatch<SetStateAction<boolean>>;
+  setOpenSendTransaction: Dispatch<SetStateAction<boolean>>;
+  setOpenTokenMetaData: Dispatch<SetStateAction<boolean>>;
+}
+
+export const ToolView: FC<ToolViewProps> = ({
   setOpenAirdrop,
   setOpenContact,
   setOpenCreateModal,
@@ -90,7 +98,7 @@ export const ToolView: FC = ({
                         : 'text-teal-500'
                     }`}
                   >
-                    <i data-lucide="dribble" className=''>
+                    <i data-lucide='dribble' className=''>
                       {tool.icon}
                     </i>
                   </div>
@@ -101,13 +109,13 @@ export const ToolView: FC = ({
                 </div>
 
                 <a className='text-primary group relative inline-flex items-center gap-2'>
-                  <span className='bg-primary/80 absolute -bottom-0 h-px w-7/12 rounded 
+                  <span
+                    className='bg-primary/80 absolute -bottom-0 h-px w-7/12 rounded 
                   transition-all 
-                  duration-500 group-hover:w-full'>
-
-                  </span>
+                  duration-500 group-hover:w-full'
+                  ></span>
                   Select & try
-                  <i data-lucide={"move-right"}>
+                  <i data-lucide={'move-right'}>
                     <LuArrowRightFromLine />
                   </i>
                 </a>
@@ -117,8 +125,10 @@ export const ToolView: FC = ({
         </div>
 
         <div className='mt-10 flex justify-center'>
-          <a className='hover:bg-primary-hover bg-primary inline-flex
-          items-center justify-center gap-2 rounded-full px-6 py-2 text-white transition-all duration-500'>
+          <a
+            className='hover:bg-primary-hover bg-primary inline-flex
+          items-center justify-center gap-2 rounded-full px-6 py-2 text-white transition-all duration-500'
+          >
             More Tools
             <i>
               <IoIosArrowRoundForward />
