@@ -45,8 +45,8 @@ export const HomeView: FC<HomeViewProps> = ({ setOpenCreateModal }) => {
                     <a
                       onClick={() => setOpenCreateModal(true)}
                       className='hover:bg-primary-hover pe-4 group mt-10 inline-flex items-center 
-                    justify-center gap-2 rounded-full border border-white/10 px-1 py-1 text-white 
-                    transition-all duration-300'
+                    justify-center gap-2 rounded-full border border-white/10 px-2 py-1 text-white 
+                    transition-all duration-300 cursor-pointer'
                     >
                       <span
                         className='bg-primary/20 text-primary me-2 flex h-11 w-11 items-center 

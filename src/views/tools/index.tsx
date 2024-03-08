@@ -80,7 +80,7 @@ export const ToolView: FC<ToolViewProps> = ({
         <div className='grid gap-6 sm:grid-colls-2 lg:grid-cols-4'>
           {tools.map((tool, index) => (
             <div
-              className='bg-default-950/40 rounded-xl backdrop-blur-3xl'
+              className='bg-default-950/40 rounded-xl backdrop-blur-3xl cursor-pointer'
               onClick={() => tool.function(true)}
             >
               <div className='p-6'>
